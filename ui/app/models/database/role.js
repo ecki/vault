@@ -47,6 +47,9 @@ export default Model.extend({
   username: attr('string', {
     subText: 'The database username that this Vault role corresponds to.',
   }),
+  password: attr('string', {
+    subText: 'The database password that this Vault role corresponds to.',
+  }),
   rotation_period: attr({
     editType: 'ttl',
     defaultValue: '24h',
@@ -115,6 +118,7 @@ export default Model.extend({
       'default_ttl',
       'max_ttl',
       'username',
+      'password',
       'rotation_period',
       'skip_import_rotation',
       'creation_statements',

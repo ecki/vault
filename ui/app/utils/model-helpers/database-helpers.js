@@ -188,8 +188,11 @@ export const AVAILABLE_PLUGIN_TYPES = [
 ];
 
 export const ROLE_FIELDS = {
-  static: ['username', 'rotation_period', 'skip_import_rotation'],
-  dynamic: ['default_ttl', 'max_ttl'],
+  static: {
+    default: ['username', 'rotation_period', 'skip_import_rotation'],
+    'postgresql-database-plugin': ['username', 'password', 'rotation_period', 'skip_import_rotation'],
+  },
+  dynamic: { default: ['default_ttl', 'max_ttl'] },
 };
 
 export const STATEMENT_FIELDS = {
@@ -233,7 +236,11 @@ export function getStatementFields(type, plugin) {
   return dbValidFields;
 }
 
-export function getRoleFields(type) {
+export function getRoleFields(type, plugin) {
   if (!type) return null;
-  return ROLE_FIELDS[type];
+  let dbValidFields = ROLE_FIELDS[type].default;
+  if (ROLE_FIELDS[type][plugin]) {
+    dbValidFields = ROLE_FIELDS[type][plugin];
+  }
+  return dbValidFields;
 }

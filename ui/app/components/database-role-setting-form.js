@@ -24,7 +24,7 @@ import { getStatementFields, getRoleFields } from '../utils/model-helpers/databa
 export default class DatabaseRoleSettingForm extends Component {
   get settingFields() {
     if (!this.args.roleType) return null;
-    const dbValidFields = getRoleFields(this.args.roleType);
+    const dbValidFields = getRoleFields(this.args.roleType, this.args.dbType);
     return this.args.attrs.filter((a) => {
       return dbValidFields.includes(a.name);
     });
