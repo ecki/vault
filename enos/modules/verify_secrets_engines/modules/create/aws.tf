@@ -32,6 +32,11 @@ data "aws_region" "aws_region" {}
 
 data "aws_caller_identity" "aws_identity" {}
 
+# Create AWS IAM Role with assume policy
+# for ci update hc-doormat-restrict --> team-vault-quality@hashicorp.com
+# for local update hc-doormat-restrict --> tin.vo@hashicorp.com
+
+
 resource "aws_iam_role_policy_attachments_exclusive" "enos_aws_main_role" {
   role_name   = aws_iam_role.enos_aws_main_role.name
   policy_arns = []
