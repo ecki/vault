@@ -3,7 +3,7 @@
 
 locals {
   // Variables
-  aws_mount      = "aws"                    # Vault aws engine
+  aws_mount      = "aws"
   vault_aws_role = "enos_test_role"
   my_email       = split("/", data.aws_caller_identity.current.arn)[2]
 
