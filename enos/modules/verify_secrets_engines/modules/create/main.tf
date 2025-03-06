@@ -9,24 +9,6 @@ terraform {
   }
 }
 
-variable "aws_region" {
-  type        = string
-  description = "AWS region for aws secrets engine"
-  default     = "us-east-1"
-}
-
-variable "aws_access_key_id" {
-  type        = string
-  description = "AWS access key for aws secrets engine"
-  default     = null
-}
-
-variable "aws_access_secret_key" {
-  type        = string
-  description = "AWS secret access key for aws secrets engine"
-  default     = null
-}
-
 variable "hosts" {
   type = map(object({
     ipv6       = string
