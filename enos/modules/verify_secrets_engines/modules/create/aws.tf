@@ -16,7 +16,7 @@ locals {
     aws_access_key = aws_iam_access_key.aws_enos_test_user.id
     aws_secret_key = aws_iam_access_key.aws_enos_test_user.secret
     mount          = local.aws_mount
-    region         = data.aws_region.current
+    region         = data.aws_region.current.name
     vault_aws_role = local.vault_aws_role
   }
 }
@@ -78,7 +78,7 @@ resource "enos_remote_exec" "aws_generate_roles" {
   for_each   = var.hosts
 
   environment = {
-    AWS_REGION            = local.aws_region
+    AWS_REGION            = local.aws_output.region
     ENGINE                = local.aws_mount
     MOUNT                 = local.aws_mount
     AWS_USER_NAME         = local.aws_output.aws_user_name
