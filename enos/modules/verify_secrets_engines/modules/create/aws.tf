@@ -100,4 +100,3 @@ resource "enos_remote_exec" "aws_generate_roles" {
     }
   }
 }
-
