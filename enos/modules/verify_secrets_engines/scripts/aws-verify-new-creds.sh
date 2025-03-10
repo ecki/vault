@@ -27,8 +27,7 @@ export VAULT_FORMAT=json
 echo -e "Configuring Vault AWS \n"
 echo "--------------------${AWS_REGION}"
 USERNAME_TEMPLATE="{{ if (eq .Type \"STS\") }}{{ printf \"${AWS_USER_NAME}-%s-%s\" (random 20) (unix_time) | truncate 32 }}{{ else }}{{ printf \"${AWS_USER_NAME}-%s-%s\" (unix_time) (random 20) | truncate 60 }}{{ end }}"
-"$binpath" write "${MOUNT}/config/root" access_key="${AWS_ACCESS_KEY_ID}" secret_key="${AWS_SECRET_ACCESS_KEY}" region="${AWS_REGION},us-east-2" username_template="${USERNAME_TEMPLATE}"
-"$binpath" read aws/config
+"$binpath" write "${MOUNT}/config/root" access_key="${AWS_ACCESS_KEY_ID}" secret_key="${AWS_SECRET_ACCESS_KEY}" region="${AWS_REGION},us-east-1" username_template="${USERNAME_TEMPLATE}"
 echo "---------------------------------"
 
 echo -e "Verifying root config \n"
@@ -43,7 +42,7 @@ ROLE=$("$binpath" list "${MOUNT}/roles" | jq -r '.[]')
 
 echo -e "Generate New Credentials \n"
 TEMP_IAM_USER=$("$binpath" read "${MOUNT}/creds/${VAULT_AWS_ROLE}") || fail "Failed to generate new credentials for iam user: ${VAULT_AWS_ROLE}"
-TEMP_ACCESS_KEY=$(echo ${TEMP_IAM_USER} | jq -r '.data.access_key') || fail "Failed to get access key from: ${VAULT_AWS_ROLE}"
+TEMP_ACCESS_KEY=$(echo "${TEMP_IAM_USER}" | jq -r '.data.access_key') || fail "Failed to get access key from: ${VAULT_AWS_ROLE}"
 if [[ -z "$TEMP_ACCESS_KEY" && "$TEMP_ACCESS_KEY" != "$AWS_USER_NAME" ]]; then
   failed "The new access key is empty or is matching the old one: ${TEMP_ACCESS_KEY}"
 fi
