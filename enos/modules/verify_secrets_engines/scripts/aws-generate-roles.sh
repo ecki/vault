@@ -27,7 +27,7 @@ test -x "$binpath" || fail "unable to locate vault binary at $binpath"
 export VAULT_FORMAT=json
 
 while true; do
-  echo -e "Waiting for IAM user to be done setting up... \n"
+  echo -e "Waiting for IAM user to be done setting up...\n"
   # Fetch the IAM user creation date and convert it to a Unix timestamp
   create_timestamp=$(aws iam get-user --user-name ${AWS_USER_NAME} --query 'User.CreateDate' --output text | sed 's/\([+-][0-9]\{2\}:[0-9]\{2\}\)$//' | date -f - "+%s")
   if (( $(date +%s) - create_timestamp > 75 )); then
