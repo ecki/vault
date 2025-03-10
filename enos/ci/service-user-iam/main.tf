@@ -97,6 +97,7 @@ data "aws_iam_policy_document" "enos_scenario" {
       "ec2:AuthorizeSecurityGroupIngress",
       "ec2:CancelSpotFleetRequests",
       "ec2:CancelSpotInstanceRequests",
+      "iam:CreateAccessKey",
       "ec2:CreateEgressOnlyInternetGateway",
       "ec2:CreateInternetGateway",
       "ec2:CreateKeyPair",
