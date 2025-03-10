@@ -189,6 +189,7 @@ data "aws_iam_policy_document" "enos_scenario" {
       "iam:CreatePolicy",
       "iam:CreateRole",
       "iam:CreateServiceLinkedRole",
+      "iam:CreateUser",
       "iam:DeleteInstanceProfile",
       "iam:DeletePolicy",
       "iam:DeleteRole",

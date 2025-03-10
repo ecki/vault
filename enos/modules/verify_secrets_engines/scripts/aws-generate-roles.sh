@@ -44,7 +44,7 @@ echo -e "Creating Role to create user \n"
 "$binpath" write "aws/roles/${VAULT_AWS_ROLE}" \
     credential_type=iam_user \
     permissions_boundary_arn="${AWS_POLICY_ARN}" \
-    policy_document=- <<EOF
+    policy_document=- << EOF
 {
   "Version": "2012-10-17",
   "Statement": [
