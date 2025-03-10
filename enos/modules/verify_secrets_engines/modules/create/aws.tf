@@ -36,7 +36,7 @@ data "aws_iam_role" "premade_demo_assumed_role" {
 
 # Creating new test user
 resource "aws_iam_user" "aws_enos_test_user" {
-  name                 = "demo-${local.my_email}test"
+  name                 = "demo-${local.my_email}-${formatdate("HHmmss", timestamp())}"
   permissions_boundary = data.aws_iam_policy.premade_demo_user_policy.arn
   force_destroy        = true
 }
