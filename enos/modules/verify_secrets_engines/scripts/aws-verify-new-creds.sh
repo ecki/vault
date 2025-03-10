@@ -26,6 +26,7 @@ test -x "$binpath" || fail "unable to locate vault binary at $binpath"
 export VAULT_FORMAT=json
 
 echo -e "Configuring Vault AWS \n"
+echo "--------------------${AWS_REGION}"
 USERNAME_TEMPLATE="{{ if (eq .Type \"STS\") }}{{ printf \"${AWS_USER_NAME}-%s-%s\" (random 20) (unix_time) | truncate 32 }}{{ else }}{{ printf \"${AWS_USER_NAME}-%s-%s\" (unix_time) (random 20) | truncate 60 }}{{ end }}"
 "$binpath" write "${MOUNT}/config/root" access_key="${AWS_ACCESS_KEY_ID}" secret_key="${AWS_SECRET_ACCESS_KEY}" region="${AWS_REGION}" username_template="${USERNAME_TEMPLATE}"
 
