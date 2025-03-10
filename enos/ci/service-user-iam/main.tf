@@ -79,6 +79,7 @@ data "aws_iam_policy_document" "aws_nuke" {
       "iam:ListUserPolicies",
       "iam:ListUserTags",
       "iam:ListUsers",
+      "iam:ListVirtualMFADevices",
       "iam:UntagUser",
       "servicequotas:ListServiceQuotas"
     ]
