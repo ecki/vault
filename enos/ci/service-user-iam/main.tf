@@ -210,6 +210,7 @@ data "aws_iam_policy_document" "enos_scenario" {
       "iam:PassRole",
       "iam:PutRolePolicy",
       "iam:RemoveRoleFromInstanceProfile",
+      "iam:UpdateUser",
       "kms:CreateAlias",
       "kms:CreateKey",
       "kms:Decrypt",
