@@ -186,6 +186,7 @@ data "aws_iam_policy_document" "enos_scenario" {
       "elasticloadbalancing:DescribeTargetGroups",
       "iam:AddRoleToInstanceProfile",
       "iam:AttachRolePolicy",
+      "iam:AttachUserPolicy",
       "iam:CreateInstanceProfile",
       "iam:CreatePolicy",
       "iam:CreateRole",
