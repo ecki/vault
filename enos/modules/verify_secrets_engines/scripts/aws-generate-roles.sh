@@ -30,7 +30,7 @@ while true; do
   echo -e "Waiting for IAM user to be done setting up...\n"
   # Fetch the IAM user creation date and convert it to a Unix timestamp
   create_timestamp=$(aws iam get-user --user-name ${AWS_USER_NAME} --query 'User.CreateDate' --output text | sed 's/\([+-][0-9]\{2\}:[0-9]\{2\}\)$//' | date -f - "+%s")
-  if (( $(date +%s) - create_timestamp > 75 )); then
+  if (($(date +%s) - create_timestamp > 75)); then
     break
   fi
   sleep 2
@@ -44,7 +44,7 @@ echo -e "Creating Role to create user \n"
 "$binpath" write "aws/roles/${VAULT_AWS_ROLE}" \
     credential_type=iam_user \
     permissions_boundary_arn="${AWS_POLICY_ARN}" \
-    policy_document=-<<EOF
+    policy_document=- <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
